@@ -28,7 +28,7 @@ class TestMoiFunctions {
         val pattern = "123moi45moi6789"
         val expected = "9876moi54moi321"
         val funcs = funcs()
-        Assert.assertEquals(expected, funcs.replaceMoi(pattern))
+        Assert.assertEquals(expected, funcs.reverseMoi(pattern))
     }
 
     @Test
