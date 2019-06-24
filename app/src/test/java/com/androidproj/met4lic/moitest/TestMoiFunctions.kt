@@ -36,7 +36,7 @@ class TestMoiFunctions {
         var pattern = "moiABCDmoiEFGHIJKLMNmoiOPmoiQRST"
         var expected = "moiABCDmoiEFGLMNmoiOPmoiQRS"
         val funcs = funcs()
-        Assert.assertEquals(expected, funcs.replaceMoi(pattern))
+        Assert.assertEquals(expected, funcs.cutMoi(pattern))
 
         pattern = "ABCDEFG"
         expected = ""

@@ -42,21 +42,50 @@ class MoiTestFunctions {
             i = target.indexOf("moi", i)
         }
         */
+        var indexOfMoi = target.indexOf("moi")
+        if(indexOfMoi == -1) {
+            return ""
+        }
         var array = target.split("moi")
-        val maxIndex = array.count() - 1
+        val maxArrayIndex = array.count() - 1
         var string = ""
-        for(target in array) {
+        for(cutTarget in array) {
             if(i == 0) {
                 //頭側３文字抜き出し処理
+                var stringCount = cutTarget.count()
+                if(stringCount < 3) {
+                    string += cutTarget
+                }
+                else {
+                    string += cutTarget.subSequence(stringCount - 3, stringCount)
+                }
+                string += "moi"
             }
-            else if (i == maxIndex) {
+            else if (i == maxArrayIndex) {
                 //後ろ側３文字抜き出し処理
+                var stringCount = cutTarget.count()
+                if(stringCount < 3) {
+                    string += cutTarget
+                }
+                else {
+                    string += cutTarget.subSequence(0, 3)
+                }
             }
             else {
                 //最大頭３文字、後ろ３文字抜き出し処理
+                var stringCount = cutTarget.count()
+                if(stringCount <= 6) {
+                    string += cutTarget
+                }
+                else {
+                    string += cutTarget.subSequence(0, 3)
+                    string += cutTarget.subSequence(stringCount - 3, stringCount)
+                }
+                string += "moi"
             }
+            println(string)
             i++
         }
-        return ""
+        return string
     }
 }
