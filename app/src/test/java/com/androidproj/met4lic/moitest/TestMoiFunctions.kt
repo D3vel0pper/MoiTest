@@ -42,4 +42,9 @@ class TestMoiFunctions {
         expected = ""
         Assert.assertEquals(expected, funcs.cutMoi(pattern))
     }
+
+    @Test
+    fun testStartSignal() {
+
+    }
 }

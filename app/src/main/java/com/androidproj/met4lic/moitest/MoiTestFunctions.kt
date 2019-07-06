@@ -1,5 +1,12 @@
 package com.androidproj.met4lic.moitest
 
+import okhttp3.MediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONObject
+
+
 /**
  * Created by D3vel0pper on 2019/06/22.
  */
@@ -87,5 +94,36 @@ class MoiTestFunctions {
             i++
         }
         return string
+    }
+
+    fun sendStartSignal(url: String): String? {
+        val client: OkHttpClient = OkHttpClient.Builder().build()
+
+        val json = JSONObject()
+        json.put("signal", "start")
+
+        val postBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString())
+        val request: Request = Request.Builder().url(url).post(postBody).build()
+        val response = client.newCall(request).execute()
+
+        val result: String? = response.body()?.string()
+        response.close()
+        return result
+
+    }
+
+    fun sendAnswer(url: String, answer: String): String? {
+        val client: OkHttpClient = OkHttpClient.Builder().build()
+
+        val json = JSONObject()
+        json.put("answer", answer)
+
+        val postBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString())
+        val request: Request = Request.Builder().url(url).post(postBody).build()
+        val response = client.newCall(request).execute()
+
+        val result: String? = response.body()?.string()
+        response.close()
+        return result
     }
 }
