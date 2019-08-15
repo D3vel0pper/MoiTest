@@ -1,5 +1,7 @@
 package com.androidproj.met4lic.moitest
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -125,5 +127,27 @@ class MoiTestFunctions {
         val result: String? = response.body()?.string()
         response.close()
         return result
+    }
+
+    fun parseResult(result: String?) :Any{
+        if(result != null) {
+            var isOperation = result.indexOf("operation") != -1
+            var isSignal = result.indexOf("signal") != -1
+
+            val mapper = jacksonObjectMapper()
+
+            if(isOperation) {
+                //Operationのdeserialize処理
+                val operation = mapper.readValue<Operation>(result)
+                return operation
+            }
+            else if(isSignal) {
+                //Signalのdeserialize処理
+                val signal = mapper.readValue<Result>(result)
+                return signal
+            }
+            else {
+            }
+        }
     }
 }
