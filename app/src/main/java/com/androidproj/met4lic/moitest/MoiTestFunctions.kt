@@ -129,7 +129,21 @@ class MoiTestFunctions {
         return result
     }
 
-    fun parseResult(result: String?) :Any{
+    fun isOperation(result: String?): Boolean {
+        if(result != null) {
+            return result.indexOf("operation") != -1
+        }
+        return false
+    }
+
+    fun isSignal(result: String?): Boolean {
+        if(result != null) {
+            return result.indexOf("signal") != -1
+        }
+        return false
+    }
+
+    fun parseResponse(result: String?) :Any? {
         if(result != null) {
             var isOperation = result.indexOf("operation") != -1
             var isSignal = result.indexOf("signal") != -1
@@ -149,5 +163,6 @@ class MoiTestFunctions {
             else {
             }
         }
+        return null
     }
 }
